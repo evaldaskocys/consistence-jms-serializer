@@ -174,6 +174,10 @@ class EnumSerializerHandler implements \JMS\Serializer\Handler\SubscribingHandle
 	 */
 	private function deserializeEnumValue(VisitorInterface $visitor, $data, array $type, Context $context): Enum
 	{
+		if (null === $data) {
+            		return null;
+        	}
+		
 		$enumClass = $this->getEnumClass($type);
 		if ($this->hasAsSingleParameter($type)) {
 			$this->checkMultiEnum($enumClass);
